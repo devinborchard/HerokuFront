@@ -12,6 +12,10 @@
 /build
 
 # misc
+src/next.conf.js
+.env
+.env/
+.env*
 .DS_Store
 .env.local
 .env.development.local
