@@ -16,5 +16,4 @@ const post_request = async(url,body) => {
     let res = await axios.post(`${BASE}/${url}`,body)
     return res
 }
-
-module.exports = api
+export default api
