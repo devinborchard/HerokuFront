@@ -7,6 +7,11 @@ const api = async () => {
     return res
 }
 
+const verifyCreds = async(username, password) => {
+    let res = await post_request('user', {username,password})
+    return res
+}
+
 const get_request = async (url) => {
     let res = await axios.get(`${BASE}/${url}`)
     return res
@@ -16,4 +21,7 @@ const post_request = async(url,body) => {
     let res = await axios.post(`${BASE}/${url}`,body)
     return res
 }
-export default api
+export {
+    api, 
+    verifyCreds
+}
