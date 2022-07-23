@@ -12,6 +12,22 @@ const verifyCreds = async(username, password) => {
     return res
 }
 
+const checkCredsAvailable = async(email, username) => {
+    let res = await post_request('checkAvailable', {email,username})
+    return res
+}
+
+const createUser = async(formResults) => {
+    let res = await post_request('createUser', {
+        username: formResults.userName.value,
+        password: formResults.password1.value,
+        firstName: formResults.firstName.value,
+        lastName: formResults.lastName.value,
+        email: formResults.email.value,
+    })
+    return res
+}
+
 const get_request = async (url) => {
     let res = await axios.get(`${BASE}/${url}`)
     return res
@@ -23,5 +39,7 @@ const post_request = async(url,body) => {
 }
 export {
     api, 
-    verifyCreds
+    verifyCreds,
+    checkCredsAvailable,
+    createUser
 }

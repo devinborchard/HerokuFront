@@ -4,10 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
     Link
   } from "react-router-dom";
-import Header from './Header';
-import Footer from './Footer';
 
-function Home() {
+function Footer() {
     const user = useSelector((state) => state.user.value)
     let loggedIn = false
 
@@ -18,10 +16,8 @@ function Home() {
     
 
     return(
-        <div className = 'general'>
-            <Header></Header>
-            <h1>Welcome</h1>
-            <Footer></Footer>
+        <div>
+           
         </div>
         
     )
@@ -29,4 +25,4 @@ function Home() {
     
 }
 
-export default Home
+export default Footer

@@ -1,5 +1,7 @@
 :root{
-  --primary : #A6D4FF
+  --primary : #42f5c5;
+  --light : #e4edeb;
+  --dark: #323635;
 }
 
 
@@ -17,9 +19,26 @@ code {
     monospace;
 }
 
+.header{
+  background-color: var(--primary);
+}
+
+.general{
+  background-color: var(--light);
+  width: 100%;
+  height: 100%;
+}
+
 .table{
   margin-left: auto;
   margin-right: auto;
+  text-align: center; 
+}
+
+.error_text{
+  font-family: Sans-serif;
+  color: red;
+  text-align: center; 
 }
 
 .basic_text{
@@ -34,6 +53,12 @@ code {
   width: 100px;
   height: 30px;
   font-family: Sans-serif;
+  
+  
+  margin: 0;
+  position: absolute;
+  text-align: center;  
+  
 }
 
 .input{
@@ -44,13 +69,26 @@ code {
 
 .login{
   background-color: var(--primary);
-  overflow: hidden; /*add this*/
-  width: 300px;
-  height: 100px;
+  width: 350px;
+  height: 200px;
   border-radius: 15px;
-  position: absolute;
+
+  position: fixed;
   top: 50%;
   left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.signup{
+  background-color: var(--primary);
+  width: 500px;
+  height: 300px;
+  border-radius: 15px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }
