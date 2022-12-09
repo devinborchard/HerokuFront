@@ -13,10 +13,7 @@ import Signup from './components/Signup';
 function App() {
   return (
     <Router>
-    <div>
-        <Routes>
-            <Route path="/login" element={<Login />}/>
-        </Routes>
+    <div className='global-div'>
         <Routes>
             <Route path="/" element={<Home />}/>
         </Routes>

@@ -1,7 +1,7 @@
 :root{
   --primary : #42f5c5;
-  --light : #e4edeb;
-  --dark: #323635;
+  --accent: #BA6FEC;
+  --dark: #161921;
 }
 
 
@@ -11,6 +11,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--dark);
   -moz-osx-font-smoothing: grayscale;
 }
 
@@ -24,9 +25,58 @@ code {
 }
 
 .general{
-  background-color: var(--light);
   width: 100%;
   height: 100%;
+}
+
+.introduction{
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.introduction_button{
+  font-family:sans-serif;
+  background-color: #161921;
+  color: #BA6FEC;
+  border: 4px solid #BA6FEC; /* Green */
+  font-size: 30px;
+  padding: 32px 16px;
+  border-radius: 20px;
+}
+
+.introduction_button_td {
+  padding: 25px;
+  font-family:sans-serif;
+  display: inline-block;
+
+}
+
+.introduction_button:hover {
+  background-color: #BA6FEC; /* Green */
+  color: #161921;
+}
+.introduction_td{
+  padding: 0px;
+  font-family:sans-serif;
+  display: block;
+  
+}
+tr.introduction{
+  padding: 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+.introduction_p{
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0px;
+}
+
+table.introduction {
+  border-collapse: collapse;
+  
 }
 
 .table{
@@ -91,4 +141,8 @@ code {
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.global-div{
+  
 }
