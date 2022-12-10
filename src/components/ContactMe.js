@@ -60,39 +60,49 @@ function Contact() {
         setMessage('')
     }
 
+    const formLabelStyle = {color: colors.dark, fontSize:'30px',height:'30px', paddingTop:'30px'}
+    const formInputStyle = {width:'100%', fontSize:'20px', textAlign:'center'}
+
     let form = (
-        <form  onSubmit={handleSubmit} onChange={handleChange} className='contact-form'>
-        <label  style={{color: colors.light, fontSize:'20px',height:'20px'}}>Name:</label>
-        <input name="name" type="text" />
+        <form  onSubmit={handleSubmit} onChange={handleChange}>
+        <label  style={formLabelStyle}>Name:</label>
+        <input style={formInputStyle} name="name" type="text" />
         <br/>
-        <label  style={{color: colors.light, fontSize:'20px',height:'20px'}}>Email:</label>
-        <input name="email" type="text" />
         <br/>
-        <label  style={{color: colors.light, fontSize:'20px',height:'20px'}}>Subject:</label>
-        <input name="subject" type="text" />
+        <label  style={formLabelStyle}>Email:</label>
+        <input style={formInputStyle} name="email" type="text" />
         <br/>
-        <label  style={{color: colors.light, fontSize:'20px',height:'20px'}}>Message:</label>
-        <input name="message" type="text" />
         <br/>
-        <input type="submit" value="Send!" />
+        <label  style={formLabelStyle}>Subject:</label>
+        <input style={formInputStyle} name="subject" type="text" />
+        <br/>
+        <br/>
+        <label  style={formLabelStyle}>Message:</label>
+        <textarea multiline={true} style={{ width:'100%', height:'200px',maxHeight:'500px', fontSize:'20px'}} name="message" type="text" />
+        <br/>
+        <br/>
+        <input style={{width:'60%', fontSize:'20px', textAlign:'center', marginBottom:'3%'}} type="submit" value="Send!" />
+        <br/>
         </form>
     )
     
     let formMessageJSX
-    if(formMesage.includes('ERR')){
-        let message = formMesage.replace('ERR', '')
-        formMessageJSX = (
-            <p  style={{color: 'red', fontSize:'20px',height:'20px'}}>{message}</p>
-        )
-    }else{
-        formMessageJSX = (
-            <p  style={{color: colors.light, fontSize:'20px',height:'20px'}}>{formMesage}</p>
-        )
+    if(formMesage.length){
+        if(formMesage.includes('ERR')){
+            let message = formMesage.replace('ERR', '')
+            formMessageJSX = (
+                <p  style={{color: 'red', fontSize:'20px',height:'20px'}}>{message}</p>
+            )
+        }else{
+            formMessageJSX = (
+                <p  style={formLabelStyle}>{formMesage}</p>
+            )
+        }
     }
+   
 
     return(
-        <table><tbody>
-            <tr><td className = 'introduction_td' style={{color: colors.light, fontSize:'70px',height:'70px'}}>Contact Me!</td></tr>
+        <table style={{margin:'0 auto', width:'80%'}}><tbody>
             <tr><td>
                 {form}
                 {formMessageJSX}

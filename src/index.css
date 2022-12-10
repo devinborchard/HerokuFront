@@ -32,7 +32,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
 .header{
   text-align: right;
 }
@@ -53,23 +52,30 @@ code {
 .introduction{
   margin-left: 20%;
   margin-right: 20%;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
   margin-top: 10%;
 }
 
-.contact-form{
-
+.headers{
+  margin-top: 10%;
+}
+.contact input,textarea {
+  border: 2px solid var(--dark);
+  border-radius: 4px;
 }
 
 .contact{
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 20%;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 10%;
+  
 }
 .about{
   margin-left: 20%;
   margin-right: 20%;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
 }
 
 .header_logo{

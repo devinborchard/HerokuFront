@@ -32,9 +32,10 @@ function Home() {
 
     const about = React.useRef(null)
     const contact = React.useRef(null)
+    const stuff = React.useRef(null)
 
     const scrollAbout = () => about.current.scrollIntoView()
-    const scrollContact = () => about.current.scrollIntoView()    
+    const scrollContact = () => contact.current.scrollIntoView()    
 
     let introduction = introductionText.map((line,i) => {
         let style = introductionStlyes[i]
@@ -47,7 +48,7 @@ function Home() {
 
     return(
         <div className = 'general'>
-            <Header></Header>
+            <Header  scrollAbout={scrollAbout} scrollContact={scrollContact}></Header>
             <div className='introduction'> 
                 <table className='introduction_table'>
                     <tbody>
@@ -68,10 +69,12 @@ function Home() {
                     </tbody>
                 </table>
             </div>
-            <div ref={about} className='about'> 
+            <h3 ref={about} className = 'headers' style={{paddingTop: '0px',marginTop:'0%', color: colors.light, fontSize:'70px',height:'70px', textAlign:'center'}}>About Me!</h3>
+            <div className='about'> 
                 <About></About>
             </div>
-            <div ref={contact} className='contact'> 
+            <h3 ref={contact} className = 'headers' style={{paddingTop: '100px',marginTop:'20%', color: colors.light, fontSize:'70px',height:'70px', textAlign:'center'}}>Contact Me!</h3>
+            <div style = {{backgroundColor:colors.grey}} className='contact'> 
                 <Contact></Contact>
             </div>
         </div>
