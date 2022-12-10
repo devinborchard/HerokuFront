@@ -6,8 +6,11 @@ import {
     Link
   } from "react-router-dom";
 import Header from './Header';
+import About from './AboutMe';
+import { colors } from '../assets/styles';
 import Footer from './Footer';
 import TextEditor from './TextEditor';
+import Contact from './ContactMe';
 
 const introductionText = [
     'Hi, my name is',
@@ -17,15 +20,21 @@ const introductionText = [
 ]
 
 const introductionStlyes = [
-    {color: '#BA6FEC', size:50, lines:1, 'font-weight': 'bold'},
-    {color: '#EAEFFC', size:150, lines:1, 'font-weight': 'bold'},
-    {color: '#9DA6BF', size:70, lines:1},
-    {color: '#9DA6BF', size:30, lines:2},
+    {color: colors.accent, size:50, lines:1, 'font-weight': 'bold'},
+    {color: colors.light, size:150, lines:1, 'font-weight': 'bold'},
+    {color: colors.grey, size:70, lines:1},
+    {color:  colors.grey, size:30, lines:2},
 ]
 
 function Home() {
 
     const navigate  = useNavigate();
+
+    const about = React.useRef(null)
+    const contact = React.useRef(null)
+
+    const scrollAbout = () => about.current.scrollIntoView()
+    const scrollContact = () => about.current.scrollIntoView()    
 
     let introduction = introductionText.map((line,i) => {
         let style = introductionStlyes[i]
@@ -38,32 +47,33 @@ function Home() {
 
     return(
         <div className = 'general'>
-            {/*<Header></Header>*/}
+            <Header></Header>
             <div className='introduction'> 
                 <table className='introduction_table'>
                     <tbody>
                         {introduction}
                         <tr>
                             <td className='introduction_button_td'>
-                                <button className='introduction_button' onClick={(e) => {
-                                    navigate('/stuff')
-                                }}>Check out my stuff !</button>
+                                <a href = "https://github.com/devinborchard">
+                                <button className='introduction_button'>Check out my stuff !</button>
+                                </a>
                             </td>
                             <td className='introduction_button_td'>
-                                <button className='introduction_button' onClick={(e) => {
-                                    navigate('/about')
-                                }}>About me !</button>
+                                <button className='introduction_button' onClick={scrollAbout}>About me !</button>
                             </td>
                             <td className='introduction_button_td'>
-                                <button className='introduction_button' onClick={(e) => {
-                                    navigate('/contact')
-                                }}>Contact me !</button>
+                                <button className='introduction_button' onClick={scrollContact}>Contact me !</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <Footer></Footer>
+            <div ref={about} className='about'> 
+                <About></About>
+            </div>
+            <div ref={contact} className='contact'> 
+                <Contact></Contact>
+            </div>
         </div>
         
     )

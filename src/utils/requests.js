@@ -28,6 +28,12 @@ const createUser = async(formResults) => {
     return res
 }
 
+const sendApiEmail = async(formData) => {
+    let res = await post_request('emailer', formData)
+    return res
+}
+
+
 const get_request = async (url) => {
     let res = await axios.get(`${BASE}/${url}`)
     return res
@@ -38,6 +44,7 @@ const post_request = async(url,body) => {
     return res
 }
 export {
+    sendApiEmail,
     api, 
     verifyCreds,
     checkCredsAvailable,
