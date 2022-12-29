@@ -9,7 +9,6 @@ import Header from './Header';
 import About from './AboutMe';
 import { colors } from '../assets/styles';
 import Footer from './Footer';
-import TextEditor from './TextEditor';
 import Contact from './ContactMe';
 
 const introductionText = [

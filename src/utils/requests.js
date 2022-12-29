@@ -1,12 +1,13 @@
 const axios = require('axios');
 const BASE = process.env.REACT_APP_BACKEND
 
-
+//test request
 const api = async () => {
     let res = await post_request('api',{data:'hi'})
     return res
 }
 
+//user login or sign up requests
 const verifyCreds = async(username, password) => {
     let res = await post_request('user', {username,password})
     return res
@@ -28,22 +29,47 @@ const createUser = async(formResults) => {
     return res
 }
 
+//recipe calls
+const getFilterTagsRequest = async() => {
+    let res = await get_request('filterTags')
+    return res.data.data
+}
+
+const getRecipesRequest = async(selectedFilters) => {
+    let res = await post_request('recipes', {filters:selectedFilters})
+    return res
+}
+
+//emailer requests
 const sendApiEmail = async(formData) => {
     let res = await post_request('emailer', formData)
     return res
 }
 
-
+//base request call functions
 const get_request = async (url) => {
-    let res = await axios.get(`${BASE}/${url}`)
-    return res
+    try{
+        let res = await axios.get(`${BASE}/${url}`)
+        return res
+    }catch(e){
+        console.log('ERROR WITH GET: ', url, e)
+        throw e
+    }
 }
 
 const post_request = async(url,body) => {
-    let res = await axios.post(`${BASE}/${url}`,body)
-    return res
+    try{
+        let res = await axios.post(`${BASE}/${url}`,body)
+        return res
+    }catch(e){
+        throw e
+    }
 }
+
+//export all functions
 export {
+    getFilterTagsRequest,
+    getRecipesRequest,
     sendApiEmail,
     api, 
     verifyCreds,

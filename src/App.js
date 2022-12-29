@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import Signup from './components/Signup';
+import Recipes from './components/Recipes';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
     <div className='global-div'>
         <Routes>
             <Route path="/" element={<Home />}/>
+        </Routes>
+        <Routes>
+            <Route path="/recipes" element={<Recipes />}/>
         </Routes>
         <Routes>
             <Route path="/signup" element={<Signup/>}/>
