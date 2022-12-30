@@ -1,10 +1,10 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import {checkCredsAvailable, createUser} from '../utils/requests'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../reducers/slices';
 import { useNavigate  } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import { colors } from '../assets/styles';
 
 function Signup(props) {
     const navigate  = useNavigate();
@@ -52,6 +52,12 @@ function Signup(props) {
         ]
     ) 
      
+    let loggedIn = user.payload? true:false
+    useEffect(()=>{
+        if(loggedIn){
+            navigate('/recipes');
+        }
+    }, [])
 
     const setError = (fieldName, error) => {
         let formDetailsCopy = [...formDetails]
@@ -112,7 +118,7 @@ function Signup(props) {
             if(result.status == 200 && result.data.data.message == 'userCreated'){
                 const userId = result.data.data.userId
                 //login
-                dispatch(setUser({
+                const user = {
                     first_name:formResults.firstName.value,
                     last_name:formResults.lastName.value,
                     email:formResults.email.value,
@@ -120,8 +126,10 @@ function Signup(props) {
                     password:formResults.password1.value,
                     permissions:null,
                     user_name:formResults.userName.value,
-                }))
-                navigate('/');
+                }
+                dispatch(setUser(user))
+                localStorage.setItem('user',JSON.stringify(user))
+                navigate('/recipes');
             }
 
         }
@@ -139,7 +147,7 @@ function Signup(props) {
         let form =  formDetails.map((entry, i)=>{
             return (
                 <tr key = {`form row ${i}`}>
-                    <td><label className='basic_text'>{entry.label}:</label></td>
+                    <td><label className='basic_text' style={{color:colors.light}}>{entry.label}:</label></td>
                     <td><input className='input' type={entry.type} name={entry.name}></input></td>
                     {renderErrors(i)}
                     
@@ -151,7 +159,7 @@ function Signup(props) {
     }
 
     return (
-        <div className="signup">
+        <div className="login">
             <form onSubmit = {handleSignup}>
                 <table className='table'><tbody>
                     <tr><td>
@@ -160,7 +168,7 @@ function Signup(props) {
                         </tbody></table>
                     </td></tr>
                     <tr><td>
-                        <button className='button' type="submit">Signup</button>
+                        <button className='recipeButton' type="submit">Signup</button>
                     </td></tr>
                 </tbody></table>
             </form> 

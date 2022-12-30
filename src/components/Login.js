@@ -1,8 +1,8 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import {verifyCreds} from '../utils/requests'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../reducers/slices';
+import { colors } from '../assets/styles';
 import { useNavigate  } from 'react-router-dom';
 
 function Login(props) {
@@ -10,6 +10,13 @@ function Login(props) {
     const user = useSelector((state) => state.user.value)
     const [error, setError] = useState('')
     const dispatch = useDispatch()
+    console.log('user: ', user)
+    let loggedIn = user.payload? true:false
+    useEffect(()=>{
+        if(loggedIn){
+            navigate('/recipes');
+        }
+    }, [])
 
     const validateInputs = (userName, password) => {
         setError('')
@@ -33,9 +40,12 @@ function Login(props) {
         let pass = validateInputs(userName,password)
         if(pass){
             let result = await verifyCreds(userName, password)
-            if( result.data.data[0]){
-                dispatch(setUser(result.data.data[0]))
-                navigate('/');
+            let user = result.data.data[0]
+            console.log('VAR SUER: ', user)
+            if( user){
+                dispatch(setUser(user))
+                localStorage.setItem('user',JSON.stringify(user))
+                navigate('/recipes');
             }else{
                 setError('User Name or Password are incorrect')
             }
@@ -49,17 +59,17 @@ function Login(props) {
                     <tr><td>
                         <table className='table'><tbody>
                             <tr>
-                                <td><label className='basic_text'>User Name:  </label></td>
+                                <td><label className='basic_text' style={{color:colors.light}}>User Name:  </label></td>
                                 <td><input className='input' type="text" name="userName"></input></td>
                             </tr>
                             <tr>
-                                <td><label className='basic_text'>Password:  </label></td>
+                                <td><label className='basic_text' style={{color:colors.light}}>Password:  </label></td>
                                 <td><input className='input' type="password" name="password"></input></td>
                             </tr> 
                         </tbody></table>
                     </td></tr>
                     <tr><td>
-                        <button className='button' type="submit">Login</button>
+                        <button className='recipeButton' type="submit">Login</button>
                     </td></tr>
                 </tbody></table>
                 

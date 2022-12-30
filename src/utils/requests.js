@@ -35,8 +35,8 @@ const getFilterTagsRequest = async() => {
     return res.data.data
 }
 
-const getRecipesRequest = async(selectedFilters) => {
-    let res = await post_request('recipes', {filters:selectedFilters})
+const getRecipesRequest = async(selectedFilters, recipeRange) => {
+    let res = await post_request('recipes', {filters:selectedFilters, index: recipeRange[0], limit:recipeRange[1]-recipeRange[0]})
     return res
 }
 
