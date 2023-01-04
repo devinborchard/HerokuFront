@@ -48,13 +48,13 @@ function RecipeHeader({scrollAbout, scrollContact}) {
     return(
         <>
         <div className='sticky'>
-        <div className='header'>
-            <table><tbody><tr>
-                <td style={{width:'50%', color:'black'}}><h2>Devin's Recipe Index</h2></td>
-                {headerButtons}
-            </tr></tbody></table>
+            <div className='header'>
+                <table><tbody><tr>
+                    <td style={{width:'50%', color:'black'}}><h2>Devin's Recipe Index</h2></td>
+                    {headerButtons}
+                </tr></tbody></table>
+                </div>
             </div>
-        </div>
         <div className='headerSpacer'></div>
             <h1>SPACER, SHOULDNT SEE THIS TEXT</h1>
         </>

@@ -131,18 +131,20 @@ function Recipes(){
         <div className = 'general'>
             
             <RecipeHeader></RecipeHeader>
-            <div id="sideNav" className="sidenav">
-                <button className='recipeButton' onClick={getRecipes}>Apply</button>
-                <h3>Filters</h3>
-                <table className='filterTable'>
-                    <tbody>{filtersJsx}</tbody>
-                </table>
-                
-            </div>
-            <div className='recipeViewer'>
-                <h1 style={{color:'white'}}>RECIPES</h1>
-                {recipesList}
-                {getMoreRecipesButton}
+            <div className='pageBody'>
+                <div id="sideNav" className="sidenav">
+                    <button className='recipeButton' onClick={getRecipes}>Apply</button>
+                    <h3>Filters</h3>
+                    <table className='filterTable'>
+                        <tbody>{filtersJsx}</tbody>
+                    </table>
+                    
+                </div>
+                <div className='recipeViewer'>
+                    <h1 style={{color:'white'}}>RECIPES</h1>
+                    {recipesList}
+                    {getMoreRecipesButton}
+                </div>
             </div>
         </div>
         
