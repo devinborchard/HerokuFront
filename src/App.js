@@ -1,15 +1,15 @@
-import Login from './components/Login';
+// import Login from './components/Login';
 import Home from './components/Home';
 import './App.css';
-import { Counter } from './components/Counter';
+// import { Counter } from './components/Counter';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
-import Signup from './components/Signup';
-import Recipes from './components/Recipes';
+// import Signup from './components/Signup';
+// import Recipes from './components/Recipes';
+import Todo from './components/Todo';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />}/>
         </Routes>
-        <Routes>
+        {/* <Routes>
             <Route path="/recipes" element={<Recipes />}/>
         </Routes>
         <Routes>
@@ -26,6 +26,9 @@ function App() {
         </Routes>
         <Routes>
             <Route path="/login" element={<Login/>}/>
+        </Routes> */}
+        <Routes>
+            <Route path="/todo" element={<Todo/>}/>
         </Routes>
     </div>
 </Router>

@@ -1,14 +1,11 @@
 
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+// import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate  } from 'react-router-dom';
-import {
-    Link
-  } from "react-router-dom";
 import Header from './Header';
 import About from './AboutMe';
 import { colors } from '../assets/styles';
-import Footer from './Footer';
+// import Footer from './Footer';
 import Contact from './ContactMe';
 
 const introductionText = [
@@ -31,7 +28,7 @@ function Home() {
 
     const about = React.useRef(null)
     const contact = React.useRef(null)
-    const stuff = React.useRef(null)
+    // const stuff = React.useRef(null)
 
     const scrollAbout = () => about.current.scrollIntoView()
     const scrollContact = () => contact.current.scrollIntoView()    

@@ -270,3 +270,14 @@ table.introduction {
   padding: 0%;
   margin: 0%;
 }
+
+.draggingLabel{
+  font-family:sans-serif;
+  background-color: #161921;
+  color: #BA6FEC;
+  border: 4px solid #BA6FEC; /* Green */
+  font-size: 30px;
+  padding: 32px 16px;
+  border-radius: 20px;
+  width: 20vw;
+}
