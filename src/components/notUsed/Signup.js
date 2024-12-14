@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import {checkCredsAvailable, createUser} from '../utils/requests'
+import {checkCredsAvailable, createUser} from '../../utils/requests'
 import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '../reducers/slices';
+import { setUser } from '../../reducers/slices';
 import { useNavigate  } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import { colors } from '../assets/styles';
+import { colors } from '../../assets/styles';
 
 function Signup(props) {
     const navigate  = useNavigate();

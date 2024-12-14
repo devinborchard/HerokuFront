@@ -5,13 +5,13 @@ import { useNavigate  } from 'react-router-dom';
 import {
     Link
   } from "react-router-dom";
-import { colors } from '../assets/styles';
+import { colors } from '../../assets/styles';
 import { 
     getFilterTagsRequest,
     getRecipesRequest 
-} from '../utils/requests';
+} from '../../utils/requests';
 import RecipeHeader from './RecipeHeader';
-import { setUser } from '../reducers/slices';
+import { setUser } from '../../reducers/slices';
 
 
 

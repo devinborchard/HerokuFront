@@ -6,14 +6,15 @@ import {
 } from "react-router-dom";
 // import Signup from './components/Signup';
 // import Recipes from './components/Recipes';
-import Todo from './components/Todo';
+
+import Top from './components/Top';
 
 function App() {
   return (
     <Router>
     <div className='global-div'>
         <Routes>
-            <Route path="/" element={<Todo/>}/>
+            <Route path="/" element={<Top/>}/>
         </Routes>
     </div>
 </Router>

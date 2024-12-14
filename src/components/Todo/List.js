@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import Draggable from 'react-draggable'; // The default
 import ListItem from './ListItem';
-import TextArea from './TextArea';
+import TextArea from '../TextArea';
 
 
 function List() {

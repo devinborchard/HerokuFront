@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
     Link
   } from "react-router-dom";
-import {removeUser} from '../reducers/slices'
+import {removeUser} from '../../reducers/slices'
 import { useNavigate  } from 'react-router-dom';
 import logo from '../assets/logo.png'
-import { colors } from '../assets/styles';
-import { setUser } from '../reducers/slices';
+import { colors } from '../../assets/styles';
+import { setUser } from '../../reducers/slices';
 
 function RecipeHeader({scrollAbout, scrollContact}) {
     const navigate  = useNavigate();

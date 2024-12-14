@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import {verifyCreds} from '../utils/requests'
+import {verifyCreds} from '../../utils/requests'
 import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '../reducers/slices';
-import { colors } from '../assets/styles';
+import { setUser } from '../../reducers/slices';
+import { colors } from '../../assets/styles';
 import { useNavigate  } from 'react-router-dom';
 
 function Login(props) {
