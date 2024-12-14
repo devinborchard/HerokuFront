@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
     Link
   } from "react-router-dom";
-import {removeUser} from '../reducers/slices'
+import {removeUser} from '../../reducers/slices'
 import { useNavigate  } from 'react-router-dom';
-import { colors } from '../assets/styles';
-import { sendApiEmail } from '../utils/requests';
+import { colors } from '../../assets/styles';
+import { sendApiEmail } from '../../utils/requests';
 
 
 function Contact() {

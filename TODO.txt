@@ -1,0 +1,5 @@
+checking off, stat tracking
+varying days
+repeated tasks by days
+Journals with calendar and side bar for entries
+Reference and point to other dates in journal

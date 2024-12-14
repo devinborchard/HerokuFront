@@ -26,11 +26,9 @@ function Todo() {
 
     const createList = async () => {
         setLists((prevList) => [...prevList, 0]);
-        console.log("LISTS: ", lists)
     }
 
     let listsJSX = lists.map((list,i) =>{
-        console.log("LIST: ", list)
         return(
             <td key = {`list_${i}`}><List ></List></td>
             
@@ -40,7 +38,6 @@ function Todo() {
 
     return(
         <>
-        {console.log("RNER")}
         <div style={{paddingTop: '0px',marginTop:'0%', color: colors.light, textAlign:'center'}}>
             <h1>Todo List Head Text</h1>
             <button className='recipeButton' onClick={createList}>Create List +</button>

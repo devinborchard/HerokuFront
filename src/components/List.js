@@ -1,22 +1,32 @@
 
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate  } from 'react-router-dom';
-import {
-    Link
-  } from "react-router-dom";
-import Header from './Header';
-import About from './AboutMe';
-import { colors } from '../assets/styles';
-import Footer from './Footer';
-import Contact from './ContactMe';
 import Draggable from 'react-draggable'; // The default
+import ListItem from './ListItem';
+import TextArea from './TextArea';
 
 
 function List() {
 
     const navigate  = useNavigate();
     const nodeRef = React.useRef(null);
+
+    const [listName, setListName] = useState("List Name")
+    const [listItems, setListItems] = useState([0])
+
+    let listItemsJSX = listItems.map((item, i) => {
+        return (
+            <tr key={`list_item_${i}`}>
+                <td>
+                    <ListItem />
+                </td>
+            </tr>
+        );
+    });
+    
+    const createItem =() => {
+        setListItems((prevList) => [...prevList, 0]);
+    }
 
     return(
 
@@ -25,16 +35,31 @@ function List() {
         <Draggable
             nodeRef={nodeRef}
             // axis="x"
-            // handle=".handle"
+            handle=".handle"
             defaultPosition={{x: 0, y: 0}}
             // position={null}
-            grid={[25, 25]}
+            // grid={[25, 25]}
             // scale={1}
             // onStart={this.handleStart}
             // onDrag={this.handleDrag}
             // onStop={this.handleStop}
         >
-            <div ref={nodeRef} className='draggingLabel'>I can now be moved around!</div>
+            <div ref={nodeRef} className='draggingList' >
+                <table style={{width:"20vw"}}>
+                    <thead>
+                    <tr>
+                        <th key={`list_head`} style={{textDecoration: "underline"}}><TextArea></TextArea></th>
+                        <th onClick={createItem}> + </th>
+                        <th className='handle'> O </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {listItemsJSX}
+                    </tbody>
+                </table>
+                
+
+            </div>
         </Draggable>    
     )
 
