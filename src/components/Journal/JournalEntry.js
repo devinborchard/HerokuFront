@@ -150,9 +150,9 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry}) {
 
     return(
         <div style={{border : "1px solid #BA6FEC"}}>
-        <button onClick={saveEntryHandler}> Save</button>
-        <button onClick={deleteEntryHandler}> Delete</button>
-        <button onClick={printData}> debug</button>
+        <button className="button-5" onClick={saveEntryHandler}> Save</button>
+        <button className="button-5" onClick={deleteEntryHandler}> Delete</button>
+        <button className="button-5" onClick={printData}> debug</button>
         <table>
             <tbody>
                 <tr>

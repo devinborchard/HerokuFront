@@ -20,9 +20,9 @@ function TopNav({setCurrentPage}) {
         <>
         <div>
             <table><tbody>
-                <tr><td><button onClick={()=>{setCurrentPage(Pages.TODO)}}>Todo</button></td></tr>
-                <tr><td><button onClick={()=>{setCurrentPage(Pages.JOURNAL)}}>Journal</button></td></tr>
-                <tr><td><button onClick={()=>{setCurrentPage(Pages.CALENDAR)}}>Calendar</button></td></tr>
+                <tr><td><button className="button-5" onClick={()=>{setCurrentPage(Pages.TODO)}}>Todo</button></td></tr>
+                <tr><td><button className="button-5" onClick={()=>{setCurrentPage(Pages.JOURNAL)}}>Journal</button></td></tr>
+                <tr><td><button className="button-5" onClick={()=>{setCurrentPage(Pages.CALENDAR)}}>Calendar</button></td></tr>
             </tbody></table>
         </div>
         </>

@@ -84,7 +84,7 @@ function Journal() {
             <h1>Journal</h1>
         </div>
         <div style={{paddingTop: '0px',marginTop:'0%', color: colors.light, textAlign:'center'}}>
-            <button onClick={addEntry}>New+</button>    
+            <button className="button-5" onClick={addEntry}>New+</button>    
         </div>
         <div >
             <table style={{marginLeft:"auto", marginRight:"auto"}}><tbody>
