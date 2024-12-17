@@ -29,7 +29,7 @@ export const userSlice = createSlice({
     },
     reducers: {
       setUser: (state, newData) => {
-        state.value = newData
+        state.value = newData.payload
       },
       removeUser: (state) => {
         state.value = {}

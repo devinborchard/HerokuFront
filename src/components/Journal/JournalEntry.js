@@ -23,18 +23,18 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry}) {
 
 
     useEffect(()=>{
-        setJournalData(selectedEntry.entry)
-        setDateData(selectedEntry.date)
-        setTitleData(selectedEntry.title)
-        setIdData(selectedEntry.id)
+        setJournalData(selectedEntry.journal_entry)
+        setDateData(selectedEntry.journal_date)
+        setTitleData(selectedEntry.journal_title)
+        setIdData(selectedEntry.journal_id)
     }, [selectedEntry])
 
     const saveEntryHandler = () => {
         saveEntry({
-            entry: journalData,
-            date: DateData,
-            title: TitleData,
-            id: idData
+            journal_entry: journalData,
+            journal_date: DateData,
+            journal_title: TitleData,
+            journal_id: idData
         })
     }
     const deleteEntryHandler = () => {
@@ -43,10 +43,10 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry}) {
 
     const printData = () => {
         console.log({
-            entry: journalData,
-            date: DateData,
-            title: TitleData,
-            id: idData
+            journal_entry: journalData,
+            journal_date: DateData,
+            journal_title: TitleData,
+            journal_id: idData
         })
     }
 

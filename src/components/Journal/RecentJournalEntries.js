@@ -15,39 +15,44 @@ function RecentJournalEntries({setSelectedEntry, entries, selectedEntry}) {
 
     
     useEffect(()=>{
-
+        // console.log("R ENTRIES: ", entries)
     }, [])
 
 
-    
     const entriesJSX = entries.map((item, i) => {
 
         let className = "recentEntry"
-        if(item.id === selectedEntry.id){
+        if(item.journal_id === selectedEntry.journal_id){
             className = "selectedRecentEntry"
         }
 
         return (
             <tr key={`recent_${i}`}>
                 <td onClick={()=>{setSelectedEntry(item)}} className={className} style={{padding:"10px", color:"white", fontSize:"20px", border:"1px solid #BA6FEC" }}>
-                    {`${item.date} : ${item.title}`}
+                    {`${item.journal_date} : ${item.journal_title}`}
                 </td>
             </tr>
         );
     });
 
-    return(
-        <div style={{border : "1px solid #BA6FEC", height: "35vw"}}>
-        <table>
-            <tbody>
-                <tr>
-                    <td style={ {padding:"10px", color: "white", textDecoration: "underline", fontSize:'20px'}}>RECENT</td>
-                </tr>
-                {entriesJSX}
-            </tbody>
-        </table>
-        </div>
-    )
+    if(entries){
+        // console.log("RECENTS: ", entries)
+
+        return(
+            <div style={{border : "1px solid #BA6FEC", height: "35vw"}}>
+            <table>
+                <tbody>
+                    <tr>
+                        <td style={ {padding:"10px", color: "white", textDecoration: "underline", fontSize:'20px'}}>RECENT</td>
+                    </tr>
+                    {entriesJSX}
+                </tbody>
+            </table>
+            </div>
+        )
+    }
+
+    
 
 }
 

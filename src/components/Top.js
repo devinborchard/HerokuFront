@@ -5,6 +5,9 @@ import { colors } from '../assets/styles';
 import Todo from './Todo/Todo';
 import TopNav from './TopNav';
 import Journal from './Journal/Journal';
+import { useSelector, useDispatch } from 'react-redux'
+import {getStoredUserData} from '../utils/userUtils'
+import { setUser } from '../reducers/slices';
 
 
 export const Pages = {
@@ -14,14 +17,29 @@ export const Pages = {
 };
 
 function Top() {
-
+    const user = useSelector((state) => state.user.value)
+    const dispatch = useDispatch()
     const navigate  = useNavigate();
 
     const [currentPage, setCurrentPage] = useState(Pages.JOURNAL)
 
-    useEffect(()=>{
-
-    }, [])
+    useEffect(() => {
+        const storedUser = getStoredUserData();
+        // console.log("STORED USER IN TOP: ", storedUser);
+        // console.log("APP USER IN TOP: ", user);
+    
+        if (storedUser?.user_id) {
+            // If storedUser exists but Redux state is empty
+            if (!user?.user_id) {
+                console.log("Setting app user from storedUser");
+                dispatch(setUser(storedUser));
+            }
+        } else {
+            // No storedUser found
+            console.log("No user found -> redirecting to login");
+            navigate('/login');
+        }
+    }, [dispatch, navigate, user]);
 
     const getPage = () => {
         if(currentPage === Pages.TODO){
@@ -31,9 +49,11 @@ function Top() {
             return (<Todo></Todo>)
         }
         else if(currentPage === Pages.JOURNAL){
-            return (<Journal></Journal>)
+            return (<Journal user = {user}></Journal>)
         }
     }
+    // console.log("USER: ", user)
+    // console.log("USER: ", user.id?true:false)
 
     return(
         <>
@@ -47,6 +67,8 @@ function Top() {
         </table>
         </>
     )
+
+    
 }
 
 export default Top
