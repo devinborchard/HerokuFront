@@ -58,12 +58,16 @@ function Journal({user}) {
         saveJournalEntryRequest(entryToSave)
     }
 
-    const deleteEntry = (idToDelete) => {
+
+    const deleteEntry = async (idToDelete) => {
+
         let oldEntries = entries.slice();
         oldEntries = oldEntries.filter((entry) => entry.journal_id !=idToDelete);
-        setEntries([...oldEntries])
-        deleteJournalEntryRequest(idToDelete)
 
+        setEntries([...oldEntries])
+        await deleteJournalEntryRequest(idToDelete)
+        const newSelected = oldEntries[0]?oldEntries[0]:{}
+        setSelectedEntry(newSelected)
     }
 
     const addEntry = () => {
@@ -91,14 +95,14 @@ function Journal({user}) {
                 <h1>Journal</h1>
             </div>
             <div style={{paddingTop: '0px',marginTop:'0%', color: colors.light, textAlign:'center'}}>
-                <button className="button-5" onClick={addEntry}>New+</button>    
+                <button className="button-5" onClick={addEntry}>New Entry +</button>    
             </div>
             <div >
                 <table style={{marginLeft:"auto", marginRight:"auto"}}><tbody>
                     <tr>
-                        <td style={{verticalAlign:"top"}}><RecentJournalEntries setSelectedEntry={setSelectedEntry} entries ={entries} selectedEntry={selectedEntry}></RecentJournalEntries></td>
+                        <td style={{verticalAlign:"top"}}><RecentJournalEntries saveEntry={saveEntry} setSelectedEntry={setSelectedEntry} entries ={entries} selectedEntry={selectedEntry}></RecentJournalEntries></td>
                         <td><JournalEntry user_id={user.user_id} deleteEntry = {deleteEntry} saveEntry = {saveEntry} selectedEntry={selectedEntry}></JournalEntry></td>
-                        <td style={{verticalAlign:"top"}}><RelatedJournalEntries setSelectedEntry={setSelectedEntry} entries ={entries} selectedEntry={selectedEntry}></RelatedJournalEntries></td>
+                        <td style={{verticalAlign:"top"}}><RelatedJournalEntries saveEntry={saveEntry} setSelectedEntry={setSelectedEntry} entries ={entries} selectedEntry={selectedEntry}></RelatedJournalEntries></td>
                     </tr>
                 </tbody></table>
             </div>

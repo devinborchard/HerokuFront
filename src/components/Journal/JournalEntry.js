@@ -38,11 +38,12 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry, user_id}) {
             user_id: user_id
         })
     }
-    const deleteEntryHandler = () => {
-        deleteEntry(idData)
+    const deleteEntryHandler = async () => {
+        await deleteEntry(idData)
     }
 
     const printData = () => {
+        // console.log("DEBUG")
         console.log({
             journal_entry: journalData,
             journal_date: DateData,
@@ -88,7 +89,7 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry, user_id}) {
         boxSizing: "border-box",
         transition: "all 0.3s ease", // Smooth transition for styles
         backgroundColor: isEditingDate ? "#1A232B" : "#161921",
-        border: isEditingDate ? "1px solid #BA6FEC" : "None", // Border on edit mode
+        border: isEditingDate ? "1px solid #BA6FEC" : "1px solid #3d294b", // Border on edit mode
         overflow: isEditingDate ? "auto" : "hidden", // Show scrollbar when editing, hide when not
         boxSizing: "border-box", // Ensures padding is included in the width/height
 
@@ -98,13 +99,13 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry, user_id}) {
     let titleTextAreaStyle = {...defaultTextAreaStyle}
     titleTextAreaStyle.backgroundColor = isEditingTitle ? "#1A232B" : "#161921"
     titleTextAreaStyle.overflow = isEditingTitle ? "auto" : "hidden"
-    titleTextAreaStyle.border = isEditingTitle ? "1px solid #BA6FEC" : "None"
+    titleTextAreaStyle.border = isEditingTitle ? "1px solid #BA6FEC" : "1px solid #3d294b"
     titleTextAreaStyle.textDecoration= "underline"
 
     let journalTextAreaStyle = {...defaultTextAreaStyle}
     journalTextAreaStyle.backgroundColor = isEditingJournal ? "#1A232B" : "#161921"
     journalTextAreaStyle.overflow = isEditingJournal ? "auto" : "hidden"
-    journalTextAreaStyle.border = isEditingJournal ? "1px solid #BA6FEC" : "None"
+    journalTextAreaStyle.border = isEditingJournal ? "1px solid #BA6FEC" : "1px solid #3d294b"
 
     
     const dateEntry = (
@@ -115,7 +116,7 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry, user_id}) {
                 value={DateData}
                 onChange={(e) => {setDateData(e.target.value)}}
                 onFocus={() => setIsEditingDate(true)} // Set editing mode when focused
-                onBlur={() => setIsEditingDate(false)} // Set editing mode off when blurred
+                onBlur={() => {setIsEditingDate(false); saveEntryHandler()}} // Set editing mode off when blurred
                 style={dateTextAreaStyle}
             />
         </div>
@@ -129,7 +130,7 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry, user_id}) {
                 value={TitleData}
                 onChange={(e) => {setTitleData(e.target.value)}}
                 onFocus={() => setIsEditingTitle(true)} // Set editing mode when focused
-                onBlur={() => setIsEditingTitle(false)} // Set editing mode off when blurred
+                onBlur={() => {setIsEditingTitle(false); saveEntryHandler()}} // Set editing mode off when blurred
                 style={titleTextAreaStyle}
             />
         </div>
@@ -143,31 +144,39 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry, user_id}) {
                 value={journalData}
                 onChange={(e) => {setJournalData(e.target.value)}}
                 onFocus={() => setIsEditingJournal(true)} // Set editing mode when focused
-                onBlur={() => setIsEditingJournal(false)} // Set editing mode off when blurred
+                onBlur={() => {setIsEditingJournal(false); saveEntryHandler()}} // Set editing mode off when blurred
                 style={journalTextAreaStyle}
             />
         </div>
     );
 
+    if(selectedEntry.journal_id){
+        return(
+            <div style={{border : "1px solid #BA6FEC"}}>
+            {/* <button className="button-5" onClick={saveEntryHandler}> Save</button> */}
+            <button className="button-5" onClick={deleteEntryHandler}> Delete</button>
+            {/* <button className="button-5" onClick={printData}> debug</button> */}
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{dateEntry}</td>
+                        <td>{titleEntry}</td></tr> 
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{journalEntry}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        )
+    }
+
     return(
-        <div style={{border : "1px solid #BA6FEC"}}>
-        <button className="button-5" onClick={saveEntryHandler}> Save</button>
-        <button className="button-5" onClick={deleteEntryHandler}> Delete</button>
-        <button className="button-5" onClick={printData}> debug</button>
-        <table>
-            <tbody>
-                <tr>
-                    <td>{dateEntry}</td>
-                    <td>{titleEntry}</td></tr> 
-            </tbody>
-        </table>
-        <table>
-            <tbody>
-                <tr>
-                    <td>{journalEntry}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div style={{ color:"white", textAlign: "center", border : "1px solid #BA6FEC"}}>
+            <h2 style={journalDivStyle} >You dont have any journal entries yet! <br/> Click the New Entry button to create your first entry</h2>
         </div>
     )
 
