@@ -8,9 +8,10 @@ import { colors } from '../../assets/styles';
 import JournalEntry from './JournalEntry';
 import RecentJournalEntries from './RecentJournalEntries';
 import { getCurrentDateString } from '../../utils/dateUtils';
-import { saveJournalEntriesRequest, getJournalEntriesRequest} from '../../utils/requests';
+import { saveJournalEntryRequest, getJournalEntriesRequest, deleteJournalEntryRequest} from '../../utils/requests';
 
 import { useSelector, useDispatch } from 'react-redux'
+import RelatedJournalEntries from './RelatedJournalEntries';
 
 
 
@@ -49,16 +50,20 @@ function Journal({user}) {
 
     const saveEntry = (entryToSave) => {
         let oldEntries = entries.slice();
-        oldEntries = oldEntries.filter((entry) => entry.id != entryToSave.journal_id);
+        oldEntries = oldEntries.filter((entry) => entry.journal_id != entryToSave.journal_id);
         const newEntries = [entryToSave, ...oldEntries]
         setEntries(newEntries)
-        saveJournalEntriesRequest(newEntries)
+        // entryToSave["user_id"]= user.user_id;
+        // console.log("ENTRY TO SAVE: ", entryToSave)
+        saveJournalEntryRequest(entryToSave)
     }
 
     const deleteEntry = (idToDelete) => {
         let oldEntries = entries.slice();
         oldEntries = oldEntries.filter((entry) => entry.journal_id !=idToDelete);
         setEntries([...oldEntries])
+        deleteJournalEntryRequest(idToDelete)
+
     }
 
     const addEntry = () => {
@@ -73,11 +78,13 @@ function Journal({user}) {
         newEntry.journal_id = nextId
         newEntry.journal_title = `Journal Entry ${nextId}`
         newEntry.journal_date = getCurrentDateString()
+        newEntry.user_id = user.user_id
         setEntries([newEntry, ...entries.slice()])
         setSelectedEntry(newEntry)
     }
     
     if(!loading){
+        // console.log("ENTRIES: ", entries)
         return(
             <>
             <div style={{paddingTop: '0px',marginTop:'0%', color: colors.light, textAlign:'center'}}>
@@ -90,8 +97,8 @@ function Journal({user}) {
                 <table style={{marginLeft:"auto", marginRight:"auto"}}><tbody>
                     <tr>
                         <td style={{verticalAlign:"top"}}><RecentJournalEntries setSelectedEntry={setSelectedEntry} entries ={entries} selectedEntry={selectedEntry}></RecentJournalEntries></td>
-                        <td><JournalEntry deleteEntry = {deleteEntry} saveEntry = {saveEntry} selectedEntry={selectedEntry}></JournalEntry></td>
-                        <td>RELATED</td>
+                        <td><JournalEntry user_id={user.user_id} deleteEntry = {deleteEntry} saveEntry = {saveEntry} selectedEntry={selectedEntry}></JournalEntry></td>
+                        <td style={{verticalAlign:"top"}}><RelatedJournalEntries setSelectedEntry={setSelectedEntry} entries ={entries} selectedEntry={selectedEntry}></RelatedJournalEntries></td>
                     </tr>
                 </tbody></table>
             </div>

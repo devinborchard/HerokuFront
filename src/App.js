@@ -7,6 +7,7 @@ import {
 // import Signup from './components/Signup';
 // import Recipes from './components/Recipes';
 import Login from './components/Login';
+import Register from './components/Register';
 
 
 import Top from './components/Top';
@@ -18,6 +19,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Top/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
         </Routes>
     </div>
 </Router>

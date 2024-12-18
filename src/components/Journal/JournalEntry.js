@@ -9,7 +9,7 @@ import { colors } from '../../assets/styles';
 
 
 
-function JournalEntry({selectedEntry, saveEntry, deleteEntry}) {
+function JournalEntry({selectedEntry, saveEntry, deleteEntry, user_id}) {
 
     const navigate  = useNavigate();
 
@@ -34,7 +34,8 @@ function JournalEntry({selectedEntry, saveEntry, deleteEntry}) {
             journal_entry: journalData,
             journal_date: DateData,
             journal_title: TitleData,
-            journal_id: idData
+            journal_id: idData,
+            user_id: user_id
         })
     }
     const deleteEntryHandler = () => {

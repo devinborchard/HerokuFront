@@ -11,9 +11,14 @@ const api = async () => {
     return res
 }
 
-const saveJournalEntriesRequest = async(formData) => {
-    let res = await post_request('saveJournalEntries', formData)
+const saveJournalEntryRequest = async(journalEntry) => {
+    let res = await post_request('saveJournalEntry', journalEntry)
     return res
+}
+
+const deleteJournalEntryRequest = async(journal_id) => {
+    let res = await get_request(`deleteJournalEntry?journal_id=${journal_id}`)
+    return res.data
 }
 
 const getJournalEntriesRequest = async(user_id) => {
@@ -26,6 +31,18 @@ const getUser = async(userName, password) => {
         "user_name":userName,
         "password":password
     })
+    return res.data
+}
+
+const checkUserName = async (userName) => {
+    let res = await post_request('checkUserName', {
+        "user_name":userName,
+    })
+    return res.data
+}
+
+const createUser = async (user) => {
+    let res = await post_request('createUser', user)
     return res.data
 }
 
@@ -62,7 +79,10 @@ const post_request = async(url,body) => {
 //export all functions
 export {
     api, 
-    saveJournalEntriesRequest,
+    saveJournalEntryRequest,
     getJournalEntriesRequest,
-    getUser
+    getUser,
+    deleteJournalEntryRequest,
+    checkUserName,
+    createUser
 }

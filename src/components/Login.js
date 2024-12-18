@@ -79,6 +79,7 @@ function Login(props) {
                     </td></tr>
                 </tbody></table>
                 <button className = "button-5" style = {{ display: "block", margin: "10px auto", textAlign: "center"}} type="submit">Login</button>
+                <button onClick={()=>{navigate('/register')}} className = "button-5" style = {{ width:"180px", display: "block", margin: "10px auto", textAlign: "center"}} >Create Account</button>
                 
             </form> 
         </div>
