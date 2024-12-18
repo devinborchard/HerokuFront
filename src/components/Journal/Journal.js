@@ -38,6 +38,8 @@ function Journal({user}) {
                 const entriesResponse = await getJournalEntriesRequest(user.user_id);
                 // console.log("ENTRIES: ", entriesResponse);
                 setEntries(entriesResponse);
+                const newSelected = entriesResponse[0]?entriesResponse[0]:{}
+                setSelectedEntry(newSelected)
             } catch (error) {
                 console.error("Failed to fetch entries:", error);
             } finally {
